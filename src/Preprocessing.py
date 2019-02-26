@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from netCDF4 import Dataset
 from sklearn.decomposition import PCA
 
-def load_alldata(path_x, path_y, features):
+def load_alldata(features):
     TEST_SPLIT = 0.2
 
     u = Dataset('../input/d16_ans_u.nc')
@@ -93,10 +93,13 @@ def load_alldata(path_x, path_y, features):
     y = np.swapaxes(y, 1,2)
 
     # shuffle
+
     indices = np.arange(X.shape[0])
     nb_test_samples = int(TEST_SPLIT * X.shape[0])
     random.seed(777)
     random.shuffle(indices)
+    X_ori = X.copy()
+    y_ori = y.copy()
     X = X[indices]
     X_train = X[nb_test_samples:]
     X_test = X[0:nb_test_samples]
@@ -110,7 +113,7 @@ def load_alldata(path_x, path_y, features):
     print('X_test shape is : ', X_test.shape)
     print('y_test shape is : ', y_test.shape)
 
-    return X_train, X_test, y_train, y_test#, pca
+    return X_train, X_test, y_train, y_test, pca, X_ori, y_ori
 
 
 
@@ -258,8 +261,8 @@ def CNN3D_type_x(arr,size):
     for t in range(arr.shape[0]):
         for x in range(0, arr.shape[2]-(size-1)):
             for y in range(0, arr.shape[3]-(size-1)):
-                 out[count] = arr[t, :, x:x+size,  y:y+size, :]
-
+                out[count] = arr[t, :, x:x+size,  y:y+size, :]
+                
                 count  +=1  
     print("X shape : ", out.shape)
     return out
@@ -274,7 +277,7 @@ def CNN3D_type_y(arr):
             for y in range(0, arr.shape[3]):
                 out[count] = arr[t, :, x:x+1, y:y+1, :]  
 
-                 count += 1 
+                count += 1 
     #out = np.squeeze(out)
     #out = out.reshape(out.shape[0], 5, 1) # LRCN
     out = out.reshape(out.shape[0], 5) # 3D CNN
@@ -290,7 +293,7 @@ def pool_CNN3D(arr, size):
     for sample in range(arr.shape[0]):
         for z in range(arr.shape[1]):
             for feature in range(arr.shape[4]):
-                 tmp = arr[sample,z,: , :,feature]
+                tmp = arr[sample,z,: , :,feature]
                 tmp_ = np.pad(tmp, int((size-1)/2), 'wrap')
                 new[sample,z,:,: ,feature] = tmp_
     return new

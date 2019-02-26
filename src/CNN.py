@@ -47,14 +47,12 @@ def CNN(features):
 
 if __name__ == '__main__':
     tStart = time.time()
-    features = 6
+    features = 9
     act = sys.argv[1]
-    model_name = 'CNN_6features_1219'
+    model_name = '3DCNN'
     
-    dirx = '../feature/'
-    diry = '../target/'
-    X_train, X_test, y_train, y_test = load_alldata(dirx, diry, 6)
-    X_train, X_test, y_train, y_test = Preprocessing_LRCN(X_train, X_test, y_train, y_test, 6, 7)
+    X_train, X_test, y_train, y_test, pca, X_ori, y_ori = load_alldata(9)
+    X_train, X_test, y_train, y_test = Preprocessing_CNN3D(X_train, X_ori, y_train, y_ori, 9, 7)
     
     
     if act == 'train':
@@ -91,10 +89,11 @@ if __name__ == '__main__':
         model_path = sys.argv[2]
         model = load_model(model_path)
         y_pre = model.predict(X_test, batch_size=1024)
-        pre_dir = '../predict/%s/'%model_name
+        pre_dir = '../predict/reset_data/'
         if not os.path.exists(pre_dir):
             os.mkdir(pre_dir)
-        np.save(pre_dir + 'testing_pca.npy', y_pre)
+        print(y_pre.shape)
+        np.save(pre_dir + '3DCNN_pca_all.npy', y_pre)
     
     else:
         print('Please type the action you want...')
