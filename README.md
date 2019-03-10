@@ -10,3 +10,10 @@
 在驗證對流的效應時並非以簡單的RMSE或是accuracy作為我們的驗證手法，由於濕對流效應的預測並非為簡單的回歸或是分類的問題，而是複雜的結構化預測問題，單純資料上的loss其實很難在物理上分辨我們預測的好壞，因此本研究根據對流的性質來驗證模型的預測優劣。分別是對流的位置、對流的垂直分布、對流對水氣量的反應以及對流的垂直差異。
   
 而在結果討論中本研究發現細心挑選的模型3DCNN是非常適合於預測高度複雜的對流效應的。
+
+### 驗證
+![image](https://github.com/r05229014/Master_thesis/blob/master/img/2.PNG)
+![image](https://github.com/r05229014/Master_thesis/blob/master/img/1.PNG)
+![image](https://github.com/r05229014/Master_thesis/blob/master/img/3.PNG)
+![image](https://github.com/r05229014/Master_thesis/blob/master/img/4.PNG)
+![image](https://github.com/r05229014/Master_thesis/blob/master/img/6.PNG)
