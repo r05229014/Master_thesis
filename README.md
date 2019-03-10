@@ -30,3 +30,6 @@
   
 **5. 各個模型的比較**
 ![image](https://github.com/r05229014/Master_thesis/blob/master/img/6.PNG)
+  
+**6. 本研究所使用的3D-CNN架構**
+![image](https://github.com/r05229014/Master_thesis/blob/master/img/7.PNG)
