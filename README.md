@@ -16,17 +16,17 @@
 本研究首先挑選了四個不同濕度的環境，分別為乾到濕的時間點。
 ![image](https://github.com/r05229014/Master_thesis/blob/master/img/2.PNG)
   
-1. 3DCNN預測位置的驗證
+**1. 3DCNN預測位置的驗證**
 ![image](https://github.com/r05229014/Master_thesis/blob/master/img/1.PNG)
   
-2. 3DCNN預測對流效應垂直統計分布的驗證
+**2. 3DCNN預測對流效應垂直統計分布的驗證**
 ![image](https://github.com/r05229014/Master_thesis/blob/master/img/3.PNG)
   
-3. 3DCNN預測對流效應對水氣反應的驗證
+**3. 3DCNN預測對流效應對水氣反應的驗證**
 ![image](https://github.com/r05229014/Master_thesis/blob/master/img/4.PNG)
   
-4. 3DCNN預測細部垂直結構的驗證
+**4. 3DCNN預測細部垂直結構的驗證**
 ![image](https://github.com/r05229014/Master_thesis/blob/master/img/5.PNG)
   
-5. 各個模型的比較
+**5. 各個模型的比較**
 ![image](https://github.com/r05229014/Master_thesis/blob/master/img/6.PNG)
