@@ -25,7 +25,7 @@
 **3. 3DCNN預測對流效應對水氣反應的驗證**
 ![image](https://github.com/r05229014/Master_thesis/blob/master/img/4.PNG)
   
-**4. 3DCNN預測細部垂直結構的驗證**
+**4. 3DCNN預測細部垂直結構的驗證**  
 ![image](https://github.com/r05229014/Master_thesis/blob/master/img/5.PNG)
   
 **5. 各個模型的比較**
