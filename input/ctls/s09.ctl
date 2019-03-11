@@ -37,7 +37,15 @@ ZDEF 33 levels  100
  16883
  17500
 TDEF 37 LINEAR 00:00Z01May1997 20mn
-VARS 1
-wh 33 99 t
+VARS 9
+u 33 99 t
+v 33 99 t
+w 33 99 t
+qv 33 99 t
+th 33 99 t
+mse 33 99 t
+cape 33 99 t
+mfc 33 99 t
+z 33 99 t
 ENDVARS
 
