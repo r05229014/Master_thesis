@@ -3,3 +3,8 @@
 *.txt
 *.nc
 *.npy
+logs/
+models_save/
+data/
+dataset/
+*.ipynb

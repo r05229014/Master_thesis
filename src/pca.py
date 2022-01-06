@@ -20,7 +20,7 @@ if __name__ == '__main__':
     X_train, X_test, y_train, y_test, pca, X_ori, y_ori = load_alldata(features)
     #X_train, X_test, y_train, y_test = load_alldata(dirx, diry, features)
     X_train, X_test, y_train, y_test = Preprocessing_CNN3D(X_train, X_ori, y_train, y_ori, features,7)
-   
+
     pre = np.load('../predict/reset_data/3DCNN_pca_all.npy')
     pre = pca.inverse_transform(pre)
     print(pre.shape)

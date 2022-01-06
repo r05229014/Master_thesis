@@ -5,56 +5,61 @@ import os
 import time
 from sklearn.preprocessing import StandardScaler
 #from keras import Model
-from keras.models import Sequential, load_model
-from keras.layers import Dense, Flatten, Dropout, Dense, Dropout, Convolution3D, MaxPooling3D
-from keras.callbacks import *
-from keras.layers.normalization import BatchNormalization
-from keras import optimizers
+#from keras.models import Sequential, load_model
+#from keras.layers import Dense, Flatten, Dropout, Dense, Dropout, Convolution3D, MaxPooling3D
+#from keras.callbacks import *
+# from keras.layers.normalization import BatchNormalization
+# from keras import optimizers
 #from keras.utils import multi_gpu_model
 # own modile
 from Preprocessing import *
-from config import ModelMGPU
+# from config import ModelMGPU
 
 
-def CNN(features):
-    print("Build CNN model!!")
-    model = Sequential()
-    model.add(Convolution3D(32, (2,2,2), use_bias=True, padding='SAME', strides=1, activation='relu', input_shape=(33,7,7,features)))
-    model.add(Convolution3D(64, (2,2,2), use_bias=True, padding='SAME', strides=1, activation='relu'))
-    model.add(Convolution3D(128, (2,2,2), use_bias=True, padding='SAME', strides=1, activation='relu'))
-    model.add(MaxPooling3D(pool_size=(2,2,2)))
-    model.add(Convolution3D(32, (2,2,2), use_bias=True, padding='SAME', strides=1, activation='relu'))
-    model.add(Convolution3D(64, (2,2,2), use_bias=True, padding='SAME', strides=1, activation='relu'))
-    model.add(Convolution3D(128, (2,2,2), use_bias=True, padding='SAME', strides=1, activation='relu'))
-    model.add(MaxPooling3D(pool_size=(2,2,2)))
-    model.add(Flatten())
-    #model.add(Dense(1024, activation='relu'))
-    #model.add(Dense(512, activation='relu'))
-    #model.add(Dense(256, activation='relu'))
-    #model.add(Dense(128, activation='relu'))
-    model.add(Dense(5, activation='linear'))
+# def CNN(features):
+#     print("Build CNN model!!")
+#     model = Sequential()
+#     model.add(Convolution3D(32, (2,2,2), use_bias=True, padding='SAME', strides=1, activation='relu', input_shape=(33,7,7,features)))
+#     model.add(Convolution3D(64, (2,2,2), use_bias=True, padding='SAME', strides=1, activation='relu'))
+#     model.add(Convolution3D(128, (2,2,2), use_bias=True, padding='SAME', strides=1, activation='relu'))
+#     model.add(MaxPooling3D(pool_size=(2,2,2)))
+#     model.add(Convolution3D(32, (2,2,2), use_bias=True, padding='SAME', strides=1, activation='relu'))
+#     model.add(Convolution3D(64, (2,2,2), use_bias=True, padding='SAME', strides=1, activation='relu'))
+#     model.add(Convolution3D(128, (2,2,2), use_bias=True, padding='SAME', strides=1, activation='relu'))
+#     model.add(MaxPooling3D(pool_size=(2,2,2)))
+#     model.add(Flatten())
+#     #model.add(Dense(1024, activation='relu'))
+#     #model.add(Dense(512, activation='relu'))
+#     #model.add(Dense(256, activation='relu'))
+#     #model.add(Dense(128, activation='relu'))
+#     model.add(Dense(5, activation='linear'))
 
-    #return model
+#     #return model
 
-    #model.add(Dense(256, activation = 'relu', kernel_initializer='random_uniform',bias_initializer='zeros', input_shape=(5,)))
-    #for i in range(10):
-    #    model.add(Dense(512, activation = 'relu',kernel_initializer='random_uniform',bias_initializer='zeros'))
-    #    #model.add(LeakyReLU(alpha=0.1))
-    #    #model.add(BatchNormalization())
-    #model.add(Dense(1, activation = 'linear',kernel_initializer='random_uniform',bias_initializer='zeros'))
-    return model
+#     #model.add(Dense(256, activation = 'relu', kernel_initializer='random_uniform',bias_initializer='zeros', input_shape=(5,)))
+#     #for i in range(10):
+#     #    model.add(Dense(512, activation = 'relu',kernel_initializer='random_uniform',bias_initializer='zeros'))
+#     #    #model.add(LeakyReLU(alpha=0.1))
+#     #    #model.add(BatchNormalization())
+#     #model.add(Dense(1, activation = 'linear',kernel_initializer='random_uniform',bias_initializer='zeros'))
+#     return model
 
 
 if __name__ == '__main__':
     tStart = time.time()
     features = 9
-    act = sys.argv[1]
+    #act = sys.argv[1]
     model_name = '3DCNN'
-    
-    X_train, X_test, y_train, y_test, pca, X_ori, y_ori = load_alldata(9)
+
+    #X_train, X_test, y_train, y_test, pca, X_ori, y_ori = load_alldata(9)
+    X_train = np.zeros((20, 33, 32, 32, 9))
+    X_ori = np.zeros((40, 33, 32, 32, 9))
+    y_train = np.zeros((20, 5, 32, 32))
+    y_ori = np.zeros((40, 32, 32))
     X_train, X_test, y_train, y_test = Preprocessing_CNN3D(X_train, X_ori, y_train, y_ori, 9, 7)
-    
-    
+    print(X_train.shape, y_train.shape)
+    assert 6==5
+
     if act == 'train':
         # model
         model = CNN(features)
