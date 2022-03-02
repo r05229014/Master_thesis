@@ -8,3 +8,4 @@ models_save/
 data/
 dataset/
 *.ipynb
+model_save/

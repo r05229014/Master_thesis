@@ -10,7 +10,7 @@ class DataGenerator(keras.utils.Sequence):
     def __init__(self, list_IDs,
                  var_names, pca_path,
                  kernel_size=7,
-                 batch_size=256, dim=(34, 32, 32),
+                 batch_size=256, dim=(34, 7, 7),
                  n_channels=9, 
                  shuffle=True, train=True):
         'Initialization'
@@ -67,16 +67,15 @@ class DataGenerator(keras.utils.Sequence):
         'Generates data containing batch_size samples'  # X : (n_samples, *dim, n_channels)
         # Initialization
         X = np.empty((self.batch_size, *self.dim, 9))
-        y = np.empty((self.batch_size, *self.dim))
+        y = np.empty((self.batch_size, 5))
 
         # Generate data
         for i, ID in enumerate(list_IDs_temp):
             # Store sample
-            for v, name in enumerate(self.vars):
-                var = np.load(f'data/vars/{name}/{name}_{ID}.npy')
-                X[i, ..., v] = var
+            var = np.load(f'input/x/x_{ID}.npy')
+            X[i, ...] = var
 
             # Store class
-            y[i] = np.load(f'data/target/wh/wh_{ID}.npy')/2.5/10**6
-        X, y = self.preprocessing(X, y)
+            y[i] = np.load(f'input/y/y_{ID}.npy')
+        # X, y = self.preprocessing(X, y)
         return X, y
