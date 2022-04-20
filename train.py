@@ -3,28 +3,28 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 from models import CNN3D
+from utils import _parse_data_function, get_dataset
+
+# def _parse_data_function(example_proto):
+#     data_feature_description = {
+#         'feature' : tf.io.FixedLenFeature([], tf.string),
+#         'label' : tf.io.FixedLenFeature([], tf.string)
+#     }
+
+#     # Parse the input tf.train.Example proto using the dictionary above.
+#     features = tf.io.parse_single_example(example_proto, data_feature_description)
+#     data = tf.io.parse_tensor(features['feature'], "float") 
+#     label = tf.io.parse_tensor(features['label'], "float")
+#     data.set_shape([33,7,7,9])
+#     label.set_shape([5,])
+#     return data, label
 
 
-def _parse_data_function(example_proto):
-    data_feature_description = {
-        'feature' : tf.io.FixedLenFeature([], tf.string),
-        'label' : tf.io.FixedLenFeature([], tf.string)
-    }
-
-    # Parse the input tf.train.Example proto using the dictionary above.
-    features = tf.io.parse_single_example(example_proto, data_feature_description)
-    data = tf.io.parse_tensor(features['feature'], "float") 
-    label = tf.io.parse_tensor(features['label'], "double")
-    data.set_shape([33,7,7,9])
-    label.set_shape([5,])
-    return data, label
-
-
-def get_dataset(dataset, BATCH_SIZE):
-    dataset = dataset.shuffle(2048)
-    dataset = dataset.prefetch(buffer_size=AUTOTUNE)
-    dataset = dataset.batch(BATCH_SIZE)
-    return dataset
+# def get_dataset(dataset, BATCH_SIZE):
+#     dataset = dataset.shuffle(2048)
+#     dataset = dataset.prefetch(buffer_size=AUTOTUNE)
+#     dataset = dataset.batch(BATCH_SIZE)
+#     return dataset
 
 
 if __name__ == '__main__':
